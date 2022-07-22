@@ -16,8 +16,8 @@ public class XmlAssertionsTests : TestBase
             .Send()
             .Response
                 .AssertStatusCode(HttpStatusCode.OK)
-                .AsXml.CopyResponseTo(out LargeModel model);
-                    //.AssertThat<LargeModel>(model => model.Children, Has.Count.EqualTo(10))
-                    //.AssertThat<LargeModel>(model => model.Children.Select(child => child.Values), Is.All.Length.EqualTo(10));
+                .AsXml
+                    .AssertThat<LargeModel>(model => model.Children, Has.Count.EqualTo(10))
+                    .AssertThat<LargeModel>(model => model.Children.Select(child => child.Values), Is.All.Length.EqualTo(10));
     }
 }
