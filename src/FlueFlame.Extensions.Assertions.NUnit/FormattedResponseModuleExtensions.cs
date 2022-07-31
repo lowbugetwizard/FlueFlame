@@ -1,4 +1,5 @@
-﻿using FlueFlame.AspNetCore.Modules.Response;
+﻿using System.Runtime.CompilerServices;
+using FlueFlame.AspNetCore.Modules.Response;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
 
@@ -6,18 +7,46 @@ namespace FlueFlame.Extensions.Assertions.NUnit;
 
 public static class FormattedResponseModuleExtensions
 {
-    public static FormattedResponseModule AssertObject<T>(this FormattedResponseModule module, T expected)
+    #region Json
+
+    public static JsonResponseModule AssertObject<T>(this JsonResponseModule module, T expected)
     {
-        return new FormattedResponseModuleWithAssertions(module).AssertObject(expected);
+        new FormattedResponseModuleWithAssertions(module).AssertObject(expected);
+        return module;
     }
-    public static FormattedResponseModule AssertThat<T>(this FormattedResponseModule module, Func<T, object> func, IResolveConstraint constraint) where T : class 
+    public static JsonResponseModule AssertThat<T>(this JsonResponseModule module, Func<T, object> func, IResolveConstraint constraint) where T : class 
     {
-        return new FormattedResponseModuleWithAssertions(module).AssertThat(func, constraint);
+        new FormattedResponseModuleWithAssertions(module).AssertThat(func, constraint);
+        return module;
     }
-    public static FormattedResponseModule AssertThat<T>(this FormattedResponseModule module, IResolveConstraint constraint) where T : class
+    public static JsonResponseModule AssertThat<T>(this JsonResponseModule module, IResolveConstraint constraint) where T : class
     {
-        return new FormattedResponseModuleWithAssertions(module).AssertThat<T>(constraint);
+        new FormattedResponseModuleWithAssertions(module).AssertThat<T>(constraint);
+        return module;
     }
+
+    #endregion
+    
+    #region Xml
+
+    public static XmlResponseModule AssertObject<T>(this XmlResponseModule module, T expected)
+    {
+        new FormattedResponseModuleWithAssertions(module).AssertObject(expected);
+        return module;
+    }
+    public static XmlResponseModule AssertThat<T>(this XmlResponseModule module, Func<T, object> func, IResolveConstraint constraint) where T : class 
+    {
+        new FormattedResponseModuleWithAssertions(module).AssertThat(func, constraint);
+        return module;
+    }
+    public static XmlResponseModule AssertThat<T>(this XmlResponseModule module, IResolveConstraint constraint) where T : class
+    {
+        new FormattedResponseModuleWithAssertions(module).AssertThat<T>(constraint);
+        return module;
+    }
+
+    #endregion
+    
 }
 
 internal class FormattedResponseModuleWithAssertions : FormattedResponseModule
