@@ -18,6 +18,18 @@ public static class TextResponseModuleExtensions
         new TextResponseModuleWithAssertions(module).AssertThat(constraint);
         return module;
     }
+    
+    public static TextResponseModule AssertLength(this TextResponseModule module, int length)
+    {
+        new TextResponseModuleWithAssertions(module).AssertThat(Has.Length.EqualTo(length));
+        return module;
+    }
+    
+    public static TextResponseModule AssertMatch(this TextResponseModule module, string pattern)
+    {
+        new TextResponseModuleWithAssertions(module).AssertThat(Does.Match(pattern));
+        return module;
+    }
 
 }
 

@@ -24,4 +24,9 @@
       <ProjectReference Include="..\Testing.TestData.AspNetCore\Testing.TestData.AspNetCore.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Assertions\gRPC" />
+      <Folder Include="Assertions\HTTP" />
+    </ItemGroup>
+
 </Project>

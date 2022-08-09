@@ -25,13 +25,15 @@ public abstract class FormattedResponseModule : AspNetModuleBase
 
 public abstract class FormattedResponseModule<T> : FormattedResponseModule where T : FormattedResponseModule<T>
 {
+    private readonly string _response;
     protected FormattedResponseModule(FlueFlameHost application) : base(application)
     {
+        _response = BodyHelper.ReadAsText();
     }
     
     public T CopyResponseTo<TObject>(out TObject response)
     {
-        var str = BodyHelper.ReadAsText();
+        var str = 
         response = Serializer.DeserializeObject<TObject>(str);
         return (T)this;
     }

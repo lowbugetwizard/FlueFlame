@@ -2,6 +2,8 @@
 using System.Net.Http;
 using FlueFlame.AspNetCore.Facades;
 using FlueFlame.AspNetCore.Factories.ModuleFactories;
+using FlueFlame.AspNetCore.Modules.gRPC;
+using FlueFlame.AspNetCore.Modules.SignalR;
 using FlueFlame.AspNetCore.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.TestHost;
@@ -34,6 +36,10 @@ namespace FlueFlame.AspNetCore
         #region Facades
 
         public HttpFacade Http => new(this);
+        public SignalRModule SignalR => new(this);
+        
+        // ReSharper disable once InconsistentNaming
+        public GRpcModule gRPC => new(this);
 
         #endregion
         
